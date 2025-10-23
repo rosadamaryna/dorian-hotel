@@ -13,6 +13,7 @@ export default [
         ...globals.browser,
         ...globals.node,
         ...globals.mocha,
+        ...globals.cypress,
         cy: true,
       },
       parserOptions: {
@@ -36,6 +37,19 @@ export default [
       'prettier/prettier': 'error',
       'react/react-in-jsx-scope': 'off',
       'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.js'] }],
+    },
+  },
+  {
+    files: ['cypress/**/*.{js,jsx}'], // тільки для файлів у папці cypress
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.mocha,
+        ...globals.cypress,
+        cy: true,
+        Cypress: true,
+      },
     },
   },
 ];
