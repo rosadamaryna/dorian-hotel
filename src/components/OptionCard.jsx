@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export default function RoomCard({ name, price, desc, img }) {
+export default function OptionCard({ name, price, img, desc }) {
   return (
     <div>
       <img src={img} alt={name} />
@@ -12,9 +12,9 @@ export default function RoomCard({ name, price, desc, img }) {
   );
 }
 
-RoomCard.propTypes = {
+OptionCard.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  desc: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
 };

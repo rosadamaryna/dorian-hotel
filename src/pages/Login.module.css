@@ -1,0 +1,31 @@
+.container {
+    background: #111;
+    color: white;
+    padding: 40px;
+    max-width: 320px;
+    margin: 120px auto;
+    border-radius: 10px;
+    font-family: "Cinzel", serif;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+}
+
+button {
+    background: white;
+    border: none;
+    padding: 10px 15px;
+    font-weight: bold;
+}
+
+.forgot {
+    margin-top: 10px;
+    text-align: right;
+    font-size: 12px;
+    color: gray;
+}

@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    background-color: #f4f4f4;
+    color: #111;
+}
+
+h1, h2, h3 {
+    font-family: "Cinzel", serif;
+}
+
+button {
+    cursor: pointer;
+}
