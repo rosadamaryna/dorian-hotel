@@ -1,0 +1,138 @@
+.contact-page {
+  background: #0d0d0d;
+  min-height: 100vh;
+  padding-top: 120px;
+  color: white;
+}
+
+/* HEADER */
+.contact-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-header h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.contact-header p {
+  color: #cccccc;
+}
+
+/* INFO GRID */
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  padding: 0 80px;
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.info-block {
+  background: #111;
+  border-radius: 10px;
+  padding: 25px;
+  border: 1px solid #222;
+  transition: 0.3s;
+}
+
+.info-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 18px rgba(212, 160, 23, 0.25);
+}
+
+.info-block h3 {
+  margin-bottom: 10px;
+}
+
+/* MAP */
+.map-wrapper iframe {
+  width: 100%;
+  height: 350px;
+  border: none;
+  filter: grayscale(20%);
+  margin-bottom: 50px;
+}
+
+/* CONTACT FORM */
+.contact-form {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.contact-form h2 {
+  margin-bottom: 20px;
+}
+
+.contact-form form {
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: #111;
+  border: 1px solid #333;
+  padding: 14px;
+  border-radius: 8px;
+  color: white;
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+.contact-form button {
+  background: #d4a017;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background: #f0c44a;
+}
+
+/* CTA */
+.contact-cta {
+  text-align: center;
+  margin-bottom: 50px;
+  padding-bottom: 60px;
+}
+
+.cta-btn {
+  background: #d4a017;
+  padding: 14px 26px;
+  border-radius: 8px;
+  color: black;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cta-btn:hover {
+  background: #f0c44a;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .contact-info {
+    padding: 0 20px;
+  }
+
+  .contact-header h1 {
+    font-size: 36px;
+  }
+
+  .map-wrapper iframe {
+    height: 260px;
+  }
+}

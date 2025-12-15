@@ -1,0 +1,68 @@
+import standard from "../assets/rooms/standard.jpg";
+import deluxe from "../assets/rooms/deluxe.jpg";
+import suite from "../assets/rooms/suite.jpg";
+
+// тимчасово використовуємо ті самі фото кілька разів.
+// Потім заміниш на реальні: standard_2.jpg, standard_3.jpg і т.д.
+export const roomsData = [
+  {
+    slug: "standard",
+    title: "Standard Room",
+    price: 120,
+    size: "28 m²",
+    guests: "2 guests",
+    bed: "Queen bed",
+    description:
+      "A refined room with gothic-inspired details, perfect for a quiet stay in the heart of the city.",
+    photos: [standard, deluxe, suite],
+    amenities: [
+      "Free Wi-Fi",
+      "Air conditioning",
+      "Private bathroom",
+      "Smart TV",
+      "Work desk",
+      "Hair dryer",
+    ],
+    rules: ["Check-in: 14:00", "Check-out: 12:00", "No smoking", "Pets: on request"],
+  },
+  {
+    slug: "deluxe",
+    title: "Deluxe Room",
+    price: 180,
+    size: "40 m²",
+    guests: "2 guests",
+    bed: "King bed",
+    description:
+      "More space, deeper comfort, and a dramatic atmosphere — ideal for romantic weekends or longer stays.",
+    photos: [deluxe, suite, standard],
+    amenities: [
+      "Free Wi-Fi",
+      "Air conditioning",
+      "Bathtub",
+      "Coffee machine",
+      "Smart TV",
+      "Room service",
+    ],
+    rules: ["Check-in: 14:00", "Check-out: 12:00", "No smoking", "Pets: on request"],
+  },
+  {
+    slug: "suite",
+    title: "Suite",
+    price: 260,
+    size: "55 m²",
+    guests: "3 guests",
+    bed: "King bed + sofa",
+    description:
+      "Our signature suite: luxurious, cinematic, and elegant. A perfect choice for special occasions.",
+    photos: [suite, deluxe, standard],
+    amenities: [
+      "Free Wi-Fi",
+      "Air conditioning",
+      "Panoramic view",
+      "Bathtub",
+      "Coffee machine",
+      "Premium toiletries",
+    ],
+    rules: ["Check-in: 14:00", "Check-out: 12:00", "No smoking", "Pets: on request"],
+  },
+];
