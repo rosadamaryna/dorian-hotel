@@ -200,6 +200,13 @@
   border: 1px solid #333;
 }
 
+.rd-price-inline {
+  color: #d4af37;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+
 /* responsive */
 @media (max-width: 900px) {
   .rd-top {

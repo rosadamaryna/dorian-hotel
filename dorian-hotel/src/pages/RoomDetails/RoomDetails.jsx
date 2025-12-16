@@ -1,13 +1,27 @@
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { roomsData } from "../../data/roomsData";
 import "./RoomDetails.css";
 
-export default function RoomDetails() {
-  const { slug } = useParams();
-  const room = useMemo(() => roomsData.find((r) => r.slug === slug), [slug]);
+import standard from "../../assets/rooms/standard.jpg";
+import deluxe from "../../assets/rooms/deluxe.jpg";
+import suite from "../../assets/rooms/suite.jpg";
 
+const photosMap = {
+  standard,
+  deluxe,
+  suite,
+};
+
+export default function RoomDetails() {
+  const { id } = useParams();
+  const [room, setRoom] = useState(null);
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/rooms/${id}`)
+      .then(res => res.json())
+      .then(data => setRoom(data));
+  }, [id]);
 
   if (!room) {
     return (
@@ -21,17 +35,17 @@ export default function RoomDetails() {
     );
   }
 
-  const photos = room.photos || [];
+  const photos = (room.photos || []).map(key => photosMap[key]);
   const current = photos[index];
 
-  const prev = () => setIndex((i) => (i === 0 ? photos.length - 1 : i - 1));
-  const next = () => setIndex((i) => (i === photos.length - 1 ? 0 : i + 1));
+  const prev = () => setIndex(i => (i === 0 ? photos.length - 1 : i - 1));
+  const next = () => setIndex(i => (i === photos.length - 1 ? 0 : i + 1));
 
   return (
     <div className="room-details-page">
       <div className="room-details-container">
 
-        {/* верх: назва + breadcrumb */}
+        {/* TOP */}
         <div className="rd-top">
           <div>
             <p className="rd-breadcrumb">
@@ -39,53 +53,34 @@ export default function RoomDetails() {
               <Link to="/rooms" className="rd-link">Rooms</Link> /{" "}
               <span>{room.title}</span>
             </p>
+
             <h1 className="rd-title">{room.title}</h1>
+
+            {/* META + PRICE INLINE */}
             <p className="rd-meta">
               {room.guests} · {room.size} · {room.bed}
+              <span className="rd-price-inline">
+                {" "}· ${room.price} / night
+              </span>
             </p>
-          </div>
-
-          <div className="rd-price">
-            <p className="rd-from">From</p>
-            <p className="rd-price-value">${room.price} / night</p>
-            <Link to="/booking" className="rd-book">Book now</Link>
           </div>
         </div>
 
-        {/* карусель */}
+        {/* GALLERY */}
         <div className="rd-gallery">
           <div className="rd-main-photo">
-            <img src={current} alt={`${room.title} photo ${index + 1}`} />
+            <img src={current} alt={`${room.title} photo`} />
 
             {photos.length > 1 && (
               <>
-                <button className="rd-nav rd-prev" onClick={prev} aria-label="Previous photo">
-                  ‹
-                </button>
-                <button className="rd-nav rd-next" onClick={next} aria-label="Next photo">
-                  ›
-                </button>
+                <button className="rd-nav rd-prev" onClick={prev}>‹</button>
+                <button className="rd-nav rd-next" onClick={next}>›</button>
               </>
             )}
           </div>
-
-          {photos.length > 1 && (
-            <div className="rd-thumbs">
-              {photos.map((src, i) => (
-                <button
-                  key={i}
-                  className={`rd-thumb ${i === index ? "active" : ""}`}
-                  onClick={() => setIndex(i)}
-                  aria-label={`Open photo ${i + 1}`}
-                >
-                  <img src={src} alt={`thumb ${i + 1}`} />
-                </button>
-              ))}
-            </div>
-          )}
         </div>
 
-        {/* контент */}
+        {/* CONTENT */}
         <div className="rd-content">
           <div className="rd-block">
             <h2>About this room</h2>
@@ -96,7 +91,7 @@ export default function RoomDetails() {
             <div className="rd-block">
               <h2>Amenities</h2>
               <ul className="rd-list">
-                {room.amenities.map((a) => (
+                {room.amenities.map(a => (
                   <li key={a}>• {a}</li>
                 ))}
               </ul>
@@ -105,19 +100,22 @@ export default function RoomDetails() {
             <div className="rd-block">
               <h2>Rules</h2>
               <ul className="rd-list">
-                {room.rules.map((r) => (
+                {room.rules.map(r => (
                   <li key={r}>• {r}</li>
                 ))}
               </ul>
             </div>
           </div>
 
+          {/* BOTTOM ACTIONS */}
           <div className="rd-bottom-actions">
-            <Link to="/rooms" className="rd-btn rd-outline">Back to Rooms</Link>
-            <Link to="/booking" state={{ room: room.slug }} className="rd-book">
-                Book now
+            <Link to="/rooms" className="rd-btn rd-outline">
+              Back to Rooms
             </Link>
 
+            <Link to="/booking" className="rd-book">
+              Book now
+            </Link>
           </div>
         </div>
 

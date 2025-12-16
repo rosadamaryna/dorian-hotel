@@ -1,10 +1,10 @@
-export default function RoomFilters() {
+export default function RoomFilters({ onFilterChange }) {
   return (
     <div className="room-filters">
-      <button>All</button>
-      <button>Standard</button>
-      <button>Deluxe</button>
-      <button>Suite</button>
+      <button onClick={() => onFilterChange("all")}>All</button>
+      <button onClick={() => onFilterChange("standard")}>Standard</button>
+      <button onClick={() => onFilterChange("deluxe")}>Deluxe</button>
+      <button onClick={() => onFilterChange("suite")}>Suite</button>
     </div>
   );
 }

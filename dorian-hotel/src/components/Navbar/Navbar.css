@@ -1,42 +1,52 @@
-/* ===== NAVBAR CONTAINER ===== */
+/* ===== GLOBAL FIX ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ===== NAVBAR ===== */
 .navbar {
-  width: 100%;
-  height: 80px;
-  background: #0f0f0f;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 50px;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 50;
+  width: 100%;
+  height: 80px;
+  background: #0f0f0f;
   border-bottom: 1px solid #222;
+  z-index: 50;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
 }
 
-/* ===== LOGO ===== */
+/* ===== LEFT ===== */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+  flex-shrink: 0;
+}
+
 .logo-img {
-  height: 45px;      /* розмір можна змінювати */
-  width: auto;
-  object-fit: contain;
+  height: 45px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: opacity 0.3s;
 }
 
 .logo-img:hover {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
-
-/* ===== RIGHT SECTION (nav + buttons) ===== */
+/* ===== RIGHT ===== */
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 20px;
 }
 
-/* ===== NAVIGATION LIST ===== */
+/* ===== LINKS ===== */
 .nav-links {
   display: flex;
   align-items: center;
@@ -44,52 +54,49 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  white-space: nowrap;
 }
 
-/* ===== NAV LINKS ===== */
-.nav-links a,
-.nav-links span {
+.nav-links li {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
   text-decoration: none;
   color: #ccc;
   font-size: 16px;
   transition: 0.3s;
-  cursor: pointer;
 }
 
-.nav-links a:hover,
-.nav-links span:hover {
+.nav-links a:hover {
   color: #fff;
 }
 
-/* ===== DROPDOWN MENU ===== */
-/* Заголовок (Rooms) */
+/* ===== DROPDOWN ===== */
 .dropdown {
   position: relative;
 }
 
-/* Меню приховане за замовчуванням */
 .dropdown-menu {
+  display: none;
   position: absolute;
-  top: 100%; /* одразу під "Rooms" */
+  top: 100%;
   left: 0;
   background: #111;
   border: 1px solid #333;
-  padding: 10px 0;
   border-radius: 6px;
+  padding: 10px 0;
   min-width: 160px;
-  display: none;
-  z-index: 1000; 
+  z-index: 1000;
 }
 
-/* Показуємо меню при наведенні */
 .dropdown:hover .dropdown-menu {
   display: block;
 }
 
-/* Пункти меню */
 .dropdown-menu li {
   padding: 8px 16px;
-  white-space: nowrap;
 }
 
 .dropdown-menu li:hover {
@@ -97,43 +104,107 @@
 }
 
 .dropdown-menu a {
-  color: white;
-  text-decoration: none;
-}
-
-/* ===== LANGUAGE SWITCHER ===== */
-.language-switcher {
-  display: flex;
-  gap: 8px;
-}
-
-.language-switcher button {
-  background: transparent;
-  color: #ccc;
-  border: 1px solid #444;
-  padding: 4px 10px;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: 0.3s;
-}
-
-.language-switcher button:hover {
-  border-color: #fff;
   color: #fff;
 }
 
-/* ===== BOOK NOW BUTTON ===== */
+/* ===== BOOK BTN ===== */
 .book-btn {
   background: #d4a017;
   padding: 10px 18px;
   border-radius: 6px;
+  color: black;
   font-weight: 600;
-  color: #000;
   text-decoration: none;
   transition: 0.3s;
+  white-space: nowrap;
 }
 
 .book-btn:hover {
   background: #ffce39;
+}
+
+/* ===== LOGOUT ===== */
+.logout-btn {
+  background: transparent;
+  border: 1px solid #444;
+  color: #ccc;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
+/* ===== BURGER ===== */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.burger span {
+  width: 24px;
+  height: 2px;
+  background: white;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    height: calc(100vh - 80px);
+    width: 260px;
+    background: #0f0f0f;
+
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px;
+    gap: 20px;
+
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-links.open {
+    transform: translateX(0);
+  }
+
+  .nav-book {
+    display: none;
+  }
+}
+
+/* ===== STICKY BOOK (MOBILE) ===== */
+.mobile-book {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-book {
+    display: block;
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    background: #d4a017;
+    color: black;
+    text-align: center;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    z-index: 100;
+  }
 }
