@@ -7,7 +7,7 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 export default defineConfig([
   globalIgnores(['dist']),
 
-  // 🔹 React components (src)
+  // React components (src)
   {
     files: ['src/**/*.{js,jsx}'],
     ignores: ['src/context/**'],
@@ -43,7 +43,7 @@ export default defineConfig([
       },
     },
     rules: {
-      // ⛔ Fast Refresh НЕ застосовується до context
+      // Fast Refresh НЕ застосовується до context
       'react-refresh/only-export-components': 'off',
     },
   },
