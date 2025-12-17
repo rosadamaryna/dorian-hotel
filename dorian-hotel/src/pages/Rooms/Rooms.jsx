@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useRooms } from "../../hooks/useRooms";
+
 
 import RoomsHeader from "../../components/RoomsHeader/RoomsHeader";
 import RoomFilters from "../../components/Filters/RoomFilters";
@@ -8,15 +10,8 @@ import "./Rooms.css";
 
 export default function Rooms() {
 
-  const [rooms, setRooms] = useState([]);
+  const { rooms } = useRooms();
   const [filter, setFilter] = useState("all");
-
-  useEffect(() => {
-    fetch("http://localhost:3001/rooms")
-      .then(res => res.json())
-      .then(data => setRooms(data));
-  }, []);
-
   const filteredRooms = rooms.filter(room => {
     if (filter === "all") return true;
     return room.title.toLowerCase().includes(filter);
